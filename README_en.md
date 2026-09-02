@@ -5,21 +5,18 @@
 <h4 align="center">An offline tool for querying IP geographic information and CDN provider.</h4>
 
 <p align="center">
-  <a href="https://github.com/zu1k/nali/actions">
-    <img src="https://img.shields.io/github/actions/workflow/status/zu1k/nali/go.yml?branch=master&style=flat-square" alt="Github Actions">
+  <a href="https://github.com/0x5826/nali-next/actions">
+    <img src="https://img.shields.io/github/actions/workflow/status/0x5826/nali-next/go.yml?branch=master&style=flat-square" alt="Github Actions">
   </a>
-  <a href="https://goreportcard.com/report/github.com/zu1k/nali">
-    <img src="https://goreportcard.com/badge/github.com/zu1k/nali?style=flat-square">
+  <a href="https://github.com/0x5826/nali-next/releases">
+    <img src="https://img.shields.io/github/release/0x5826/nali-next/all.svg?style=flat-square">
   </a>
-  <a href="https://github.com/zu1k/nali/releases">
-    <img src="https://img.shields.io/github/release/zu1k/nali/all.svg?style=flat-square">
-  </a>
-  <a href="https://github.com/zu1k/nali/releases">
-    <img src="https://img.shields.io/github/downloads/zu1k/nali/total?style=flat-square">
+  <a href="https://github.com/0x5826/nali-next/releases">
+    <img src="https://img.shields.io/github/downloads/0x5826/nali-next/total?style=flat-square">
   </a>
 </p>
 
-#### [中文文档](https://github.com/zu1k/nali/blob/master/README.md)
+#### [中文文档](https://github.com/0x5826/nali-next/blob/master/README.md)
 
 ## Feature
 
@@ -44,15 +41,15 @@
 
 ### Install from source
 
-Nali Requires Go >= 1.19. You can build it from source:
+Nali Requires Go >= 1.26. You can build it from source:
 
 ```sh
-$ go install github.com/zu1k/nali@latest
+$ go install github.com/0x5826/nali-next@latest
 ```
 
 ### Install pre-build binary
 
-Pre-built binaries are available here: [release](https://github.com/zu1k/nali/releases)
+Pre-built binaries are available here: [release](https://github.com/0x5826/nali-next/releases)
 
 Download the binary compatible with your platform, unpack and copy to the directory in path
 

@@ -15,17 +15,24 @@ var (
 
 func init() {
 	if naliHome := os.Getenv("NALI_HOME"); len(naliHome) != 0 {
+		if abs, err := filepath.Abs(naliHome); err == nil {
+			naliHome = abs
+		}
 		ConfigDirPath = naliHome
 		DataDirPath = naliHome
 	} else {
 		ConfigDirPath = os.Getenv("NALI_CONFIG_HOME")
 		if len(ConfigDirPath) == 0 {
 			ConfigDirPath = filepath.Join(xdg.ConfigHome, "nali")
+		} else if abs, err := filepath.Abs(ConfigDirPath); err == nil {
+			ConfigDirPath = abs
 		}
 
 		DataDirPath = os.Getenv("NALI_DB_HOME")
 		if len(DataDirPath) == 0 {
 			DataDirPath = filepath.Join(xdg.DataHome, "nali")
+		} else if abs, err := filepath.Abs(DataDirPath); err == nil {
+			DataDirPath = abs
 		}
 	}
 

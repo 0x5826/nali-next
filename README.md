@@ -5,21 +5,18 @@
 <h4 align="center">一个查询IP地理信息和CDN提供商的离线终端工具.</h4>
 
 <p align="center">
-  <a href="https://github.com/zu1k/nali/actions">
-    <img src="https://img.shields.io/github/actions/workflow/status/zu1k/nali/go.yml?branch=master&style=flat-square" alt="Github Actions">
+  <a href="https://github.com/0x5826/nali-next/actions">
+    <img src="https://img.shields.io/github/actions/workflow/status/0x5826/nali-next/go.yml?branch=master&style=flat-square" alt="Github Actions">
   </a>
-  <a href="https://goreportcard.com/report/github.com/zu1k/nali">
-    <img src="https://goreportcard.com/badge/github.com/zu1k/nali?style=flat-square">
+  <a href="https://github.com/0x5826/nali-next/releases">
+    <img src="https://img.shields.io/github/release/0x5826/nali-next/all.svg?style=flat-square">
   </a>
-  <a href="https://github.com/zu1k/nali/releases">
-    <img src="https://img.shields.io/github/release/zu1k/nali/all.svg?style=flat-square">
-  </a>
-  <a href="https://github.com/zu1k/nali/releases">
-    <img src="https://img.shields.io/github/downloads/zu1k/nali/total?style=flat-square">
+  <a href="https://github.com/0x5826/nali-next/releases">
+    <img src="https://img.shields.io/github/downloads/0x5826/nali-next/total?style=flat-square">
   </a>
 </p>
 
-#### [English](https://github.com/zu1k/nali/blob/master/README_en.md)
+#### [English](https://github.com/0x5826/nali-next/blob/master/README_en.md)
 
 ## 功能
 
@@ -44,15 +41,15 @@
 
 ### 从源码安装
 
-Nali 需要预先安装 Go >= 1.19. 安装后可以从源码安装软件:
+Nali 需要预先安装 Go >= 1.26. 安装后可以从源码安装软件:
 
 ```sh
-$ go install github.com/zu1k/nali@latest
+$ go install github.com/0x5826/nali-next@latest
 ```
 
 ### 下载预编译的可执行程序
 
-可以从Release页面下载预编译好的可执行程序: [Release](https://github.com/zu1k/nali/releases)
+可以从Release页面下载预编译好的可执行程序: [Release](https://github.com/0x5826/nali-next/releases)
 
 你需要选择适合你系统和硬件架构的版本下载，解压后可直接运行
 
