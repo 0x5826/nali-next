@@ -39,6 +39,13 @@
 
 ## Install
 
+### Homebrew (macOS / Linux)
+
+```sh
+$ brew tap 0x5826/tap https://github.com/0x5826/nali-next
+$ brew install 0x5826/tap/nali
+```
+
 ### Install from source
 
 Nali Requires Go >= 1.26. You can build it from source:
