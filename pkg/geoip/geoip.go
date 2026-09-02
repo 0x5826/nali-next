@@ -8,8 +8,15 @@ import (
 	"os"
 
 	"github.com/oschwald/geoip2-golang"
+	"github.com/oschwald/maxminddb-golang"
 	"github.com/spf13/viper"
+	"github.com/zu1k/nali/pkg/download"
 )
+
+var DownloadUrls = []string{
+	"https://github.com/P3TERX/GeoLite.mmdb/releases/latest/download/GeoLite2-City.mmdb",
+	"https://raw.githubusercontent.com/P3TERX/GeoLite.mmdb/download/GeoLite2-City.mmdb",
+}
 
 // GeoIP2
 type GeoIP struct {
@@ -21,15 +28,27 @@ func NewGeoIP(filePath string) (*GeoIP, error) {
 	// 判断文件是否存在
 	_, err := os.Stat(filePath)
 	if err != nil && os.IsNotExist(err) {
-		log.Println("文件不存在，请自行下载 Geoip2 City库，并保存在", filePath)
-		return nil, err
-	} else {
-		db, err := geoip2.Open(filePath)
+		log.Println("文件不存在，尝试从网络获取最新 GeoLite2-City 数据库...")
+		_, err = download.Download(filePath, DownloadUrls...)
 		if err != nil {
-			log.Fatal(err)
+			log.Println("GeoLite2-City.mmdb 自动下载失败，请手动下载并保存在", filePath)
+			return nil, err
 		}
-		return &GeoIP{db: db}, nil
 	}
+	db, err := geoip2.Open(filePath)
+	if err != nil {
+		return nil, err
+	}
+	return &GeoIP{db: db}, nil
+}
+
+func CheckFile(data []byte) bool {
+	db, err := maxminddb.FromBytes(data)
+	if err != nil {
+		return false
+	}
+	_ = db.Close()
+	return true
 }
 
 func (g GeoIP) Find(query string, params ...string) (result fmt.Stringer, err error) {

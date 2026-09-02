@@ -2,6 +2,7 @@ package db
 
 import (
 	"github.com/zu1k/nali/pkg/cdn"
+	"github.com/zu1k/nali/pkg/geoip"
 	"github.com/zu1k/nali/pkg/ip2region"
 	"github.com/zu1k/nali/pkg/qqwry"
 )
@@ -37,10 +38,11 @@ func GetDefaultDBList() List {
 				"geolite",
 				"geolite2",
 			},
-			Format:    FormatMMDB,
-			File:      "GeoLite2-City.mmdb",
-			Languages: LanguagesAll,
-			Types:     TypesIP,
+			Format:       FormatMMDB,
+			File:         "GeoLite2-City.mmdb",
+			Languages:    LanguagesAll,
+			Types:        TypesIP,
+			DownloadUrls: geoip.DownloadUrls,
 		},
 		&DB{
 			Name: "dbip",

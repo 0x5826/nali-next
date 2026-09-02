@@ -7,6 +7,7 @@ import (
 	"time"
 
 	"github.com/zu1k/nali/pkg/download"
+	"github.com/zu1k/nali/pkg/geoip"
 	"github.com/zu1k/nali/pkg/qqwry"
 	"github.com/zu1k/nali/pkg/zxipv6wry"
 )
@@ -32,12 +33,14 @@ var DbNameListForUpdate = []string{
 	"qqwry",
 	"zxipv6wry",
 	"ip2region",
+	"geoip",
 	"cdn",
 }
 
 var DbCheckFunc = map[Format]func([]byte) bool{
 	FormatQQWry:     qqwry.CheckFile,
 	FormatZXIPv6Wry: zxipv6wry.CheckFile,
+	FormatMMDB:      geoip.CheckFile,
 }
 
 func getUpdateFuncByName(name string) (func() error, string) {
