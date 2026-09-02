@@ -6,39 +6,35 @@ jobs:
     name: Test and Build
     runs-on: ubuntu-latest
     steps:
+      - name: Check out code
+        uses: actions/checkout@v4
+
       - name: Setup Go
-        uses: actions/setup-go@v3
+        uses: actions/setup-go@v5
         with:
-          go-version: '^1.21'
-      - name: Check out code into the Go module directory
-        uses: actions/checkout@v3
-      - name: Cache go module
-        uses: actions/cache@v3
-        with:
-          path: ~/go/pkg/mod
-          key: ${{ runner.os }}-go-${{ hashFiles('**/go.sum') }}
-          restore-keys: |
-            ${{ runner.os }}-go-
-      - name: Get dependencies and run test
-        run: |
-          go test ./...
+          go-version-file: go.mod
+          cache: true
+
+      - name: Run tests
+        run: go test -v ./...
+
       - name: Build
         run: go build
 
   release-aur-git:
     name: Release Aur Git
     needs: [test-build]
-    if: github.event_name == 'push'
+    if: github.event_name == 'push' && github.repository == 'zu1k/nali'
     runs-on: ubuntu-latest
     steps:
       - name: Check out code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
       - name: Get version
         id: version
-        run: echo ::set-output name=version::$(git describe --long --tags | sed 's/^v//;s/\([^-]*-g\)/r\1/;s/-/./g')
+        run: echo "version=$(git describe --long --tags | sed 's/^v//;s/\([^-]*-g\)/r\1/;s/-/./g')" >> $GITHUB_OUTPUT
 
       - name: Publish AUR package nali-go-git
         uses: zu1k/aur-publish-action@master
@@ -48,3 +44,4 @@ jobs:
           commit_email: 'i@zu1k.com'
           ssh_private_key: ${{ secrets.AUR_SSH_PRIVATE_KEY }}
           new_release: ${{ steps.version.outputs.version }}
+
